@@ -7,17 +7,15 @@ import sys
 
 def GetLyrics(url,filename,artist):
 	soup = BeautifulSoup(urllib2.urlopen(url))
-	#soup.encode('ascii')
-	#print soup.original_encoding
-	#a = soup.find('div' , class_ = 'col-xs-12 col-lg-8 text-center')
+	
 	a = soup.find('div' , class_ = 'ringtone')
-	#b = list(a.children) #returns a list of all the elements which are direct children of element a
+	
 	b = a.next_siblings   #returns a list of all the elements which are on same level as element a
 
 	for sib in b:
 		if type(sib)!= str :
 			tmp = str(sib)
-			if tmp[0:5]=='<div>':
+			if tmp[0:5]=='<div>': #the first div tag after ringtone contains the lyrics
 				lyrics = sib
 				break	
 			
