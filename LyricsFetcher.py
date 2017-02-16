@@ -52,7 +52,7 @@ def main():
 		song_name = RemoveSpaces(song_name.lower())
 		url = 'http://www.azlyrics.com/lyrics/'+artist + '/'+ song_name+'.html
 		urllib2.urlopen(url)
-	except urllib2.HTTPError , err:
+	except urllib2.HTTPError as err:
 		if err.code == 404:
 			print 'Please check the name of the artist and the song.'
 			print 'The url',url,'does not exist'
