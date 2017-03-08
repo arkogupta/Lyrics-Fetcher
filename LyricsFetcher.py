@@ -50,9 +50,11 @@ def main():
 		artist = RemoveSpaces(artist.lower())
 		song_name = raw_input('Enter name of song : ')
 		song_name = RemoveSpaces(song_name.lower())
-		url = 'http://www.azlyrics.com/lyrics/'+artist + '/'+ song_name+'.html
+		url = 'http://www.azlyrics.com/lyrics/'+artist + '/'+ song_name+ '.html'
 		urllib2.urlopen(url)
 	except urllib2.HTTPError as err:
+		#print err.code
+		#print 'Please check the name of the artist and the song.'
 		if err.code == 404:
 			print 'Please check the name of the artist and the song.'
 			print 'The url',url,'does not exist'
@@ -60,10 +62,10 @@ def main():
 			print 'Access Denied!'
 		else:
 			print 'The following error occured : err',err.code
-		
-	print 'Fetching lyrics for song "' + song_name + ' "by '+ artist + '...' 
-	GetLyrics(url,song_name+'.txt',artist)
-	print 'Lyrics saved in file "'+ song_name+'.txt" '
+	else:	
+		print 'Fetching lyrics for song "' + song_name + ' "by '+ artist + '...' 
+		GetLyrics(url,song_name+'.txt',artist)
+		print 'Lyrics saved in file "'+ song_name+'.txt" '
 
 
 if __name__ == '__main__':
